@@ -668,7 +668,14 @@ closing #\> will also be consumed."
                           ;; non-capturing group - return flags as
                           ;; second value
                           (values :open-paren-colon flags))
-                         ((#\<)
+                         ((#\< #\P)
+                          (when (char= next-char #\P)
+                            (let ((next-char (next-char-non-extended lexer)))
+                              (unless (char= next-char #\<)
+                                (signal-syntax-error* (1- (lexer-pos lexer))
+                                                      "Character '~A' may not follow '(?P<' (because ~a = NIL)"
+                                                      next-char
+                                                      '*allow-named-registers*))))
                           ;; might be a look-behind assertion or a named group, so
                           ;; check next character
                           (let ((next-char (next-char-non-extended lexer)))

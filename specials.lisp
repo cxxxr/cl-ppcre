@@ -145,7 +145,7 @@ intended to handle `character properties' like \\p{IsAlpha}.  If
 (defvar *allow-quoting* nil
   "Whether the parser should support Perl's \\Q and \\E.")
 
-(defvar *allow-named-registers* nil
+(defvar *allow-named-registers* t
   "Whether the parser should support AllegroCL's named registers
 \(?<name>\"<regex>\") and back-reference \\k<name> syntax.")
 
