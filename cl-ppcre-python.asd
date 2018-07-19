@@ -31,12 +31,7 @@
 
 (in-package :cl-user)
 
-(defpackage :cl-ppcre-asd
-  (:use :cl :asdf))
-
-(in-package :cl-ppcre-asd)
-
-(defsystem :cl-ppcre
+(asdf:defsystem :cl-ppcre-python
   :version "2.0.11"
   :description "Perl-compatible regular expression library"
   :author "Dr. Edi Weitz"
@@ -69,17 +64,17 @@
                (:file "scanner")
                (:file "api")))
 
-(defsystem :cl-ppcre-test
+(asdf:defsystem :cl-ppcre-python-test
   :description "Perl-compatible regular expression library tests"
   :author "Dr. Edi Weitz"
   :license "BSD"
-  :depends-on (:cl-ppcre :flexi-streams)
+  :depends-on (:cl-ppcre-python :flexi-streams)
   :components ((:module "test"
                         :serial t
                         :components ((:file "packages")
                                      (:file "tests")
                                      (:file "perl-tests")))))
 
-(defmethod perform ((o test-op) (c (eql (find-system :cl-ppcre))))
-  (operate 'load-op :cl-ppcre-test)
-  (funcall (intern (symbol-name :run-all-tests) (find-package :cl-ppcre-test))))
+(defmethod asdf:perform ((o asdf:test-op) (c (eql (asdf:find-system :cl-ppcre-python))))
+  (asdf:operate 'asdf:load-op :cl-ppcre-python-test)
+  (funcall (intern (symbol-name :run-all-tests) (find-package :cl-ppcre-python-test))))

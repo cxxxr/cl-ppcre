@@ -29,7 +29,7 @@
 ;;; NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ;;; SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-(in-package :cl-ppcre)
+(in-package :cl-ppcre/python)
 
 ;;; special variables used to effect declarations
 
@@ -149,7 +149,7 @@ intended to handle `character properties' like \\p{IsAlpha}.  If
   "Whether the parser should support AllegroCL's named registers
 \(?<name>\"<regex>\") and back-reference \\k<name> syntax.")
 
-(pushnew :cl-ppcre *features*)
+(pushnew :cl-ppcre/python *features*)
 
 ;; stuff for Nikodemus Siivola's HYPERDOC
 ;; see <http://common-lisp.net/project/hyperdoc/>
@@ -159,7 +159,7 @@ intended to handle `character properties' like \\p{IsAlpha}.  If
 (defvar *hyperdoc-base-uri* "http://weitz.de/cl-ppcre/")
 
 (let ((exported-symbols-alist
-       (loop for symbol being the external-symbols of :cl-ppcre
+       (loop for symbol being the external-symbols of :cl-ppcre/python
              collect (cons symbol
                            (concatenate 'string
                                         "#"

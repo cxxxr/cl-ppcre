@@ -29,8 +29,7 @@
 
 (in-package :cl-user)
 
-(defpackage :cl-ppcre
-  (:nicknames :ppcre)
+(defpackage :cl-ppcre/python
   #+:genera
   (:shadowing-import-from :common-lisp :lambda :simple-string :string)
   (:use #-:genera :cl #+:genera :future-common-lisp)
